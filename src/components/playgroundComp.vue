@@ -33,7 +33,7 @@ export default {
           type: 'name',
         },
         {
-          label: 'avatar',
+          label: 'Avatar',
           field: 'avatar',
           type: 'image',
         },
@@ -52,6 +52,15 @@ export default {
 
 <template>
   <div>
-    <vue-good-table :columns="columns" :rows="rows" />
+    <vue-good-table :columns="columns" :rows="rows">
+      <template slot="table-row" slot-scope="props">
+        <span v-if="props.column.field === 'avatar'">
+          <img :src="props.formattedRow[props.column.field]" />
+        </span>
+        <span v-else>
+          {{ props.formattedRow[props.column.field] }}
+        </span>
+      </template>
+    </vue-good-table>
   </div>
 </template>
