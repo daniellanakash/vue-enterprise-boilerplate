@@ -4,6 +4,7 @@ import NavBarRoutes from './nav-bar-routes.vue'
 
 export default {
   components: { NavBarRoutes },
+
   data() {
     return {
       persistentNavRoutes: [
@@ -21,19 +22,10 @@ export default {
           name: 'logout',
           title: 'Log out',
         },
-        {
-          name: 'Playground',
-          title: 'Playground',
-        },
-      ],
-      loggedOutNavRoutes: [
-        {
-          name: 'login',
-          title: 'Log in',
-        },
       ],
     }
   },
+
   computed: {
     ...authComputed,
   },
@@ -43,8 +35,7 @@ export default {
 <template>
   <ul :class="$style.container">
     <NavBarRoutes :routes="persistentNavRoutes" />
-    <NavBarRoutes v-if="loggedIn" :routes="loggedInNavRoutes" />
-    <NavBarRoutes v-else :routes="loggedOutNavRoutes" />
+    <NavBarRoutes :v-show="LoggedIn" :routes="loggedInNavRoutes" />
   </ul>
 </template>
 
@@ -54,6 +45,7 @@ export default {
 .container {
   padding: 0;
   margin: 0 0 $size-grid-padding;
+  color: $color-link-text-active;
   text-align: center;
   list-style-type: none;
 

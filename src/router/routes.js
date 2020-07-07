@@ -24,6 +24,11 @@ export default [
     },
   },
   {
+    path: '/Playground',
+    name: 'Playground',
+    component: () => lazyLoadView(import('@views/playgroundView.vue')),
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: () => lazyLoadView(import('@views/profile.vue')),
